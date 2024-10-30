@@ -114,16 +114,17 @@ bcr.bar_chart_race(df = df, title='test', filename='tuition.gif')
 
 The file `tuition.gif` will be created in the current directory.
 
-```console
-$ ./transform.sh | python make_chart.py 
-/usr/local/lib/python3.10/dist-packages/bar_chart_race/_make_chart.py:889: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+```shell
+@env3d ➜ /workspaces/python-data-transformation-project (main) $ ./transform.sh | python make_chart.py 
+/usr/local/python/3.12.1/lib/python3.12/site-packages/bar_chart_race/_make_chart.py:889: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
   df_values.iloc[:, 0] = df_values.iloc[:, 0].fillna(method='ffill')
-/usr/local/lib/python3.10/dist-packages/bar_chart_race/_make_chart.py:286: UserWarning: FixedFormatter should only be used together with FixedLocator
+/usr/local/python/3.12.1/lib/python3.12/site-packages/bar_chart_race/_make_chart.py:286: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
   ax.set_yticklabels(self.df_values.columns)
-/usr/local/lib/python3.10/dist-packages/bar_chart_race/_make_chart.py:287: UserWarning: FixedFormatter should only be used together with FixedLocator
+/usr/local/python/3.12.1/lib/python3.12/site-packages/bar_chart_race/_make_chart.py:287: UserWarning: set_ticklabels() should only be used with a fixed number of ticks, i.e. after set_ticks() or using a FixedLocator.
   ax.set_xticklabels([max_val] * len(ax.get_xticks()))
-$ ls -al tuition.mp4
--rw-rw-r-- 1 ubuntu ubuntu 260173 Jul 18 19:35 tuition.mp4
+MovieWriter imagemagick unavailable; using Pillow instead.
+@env3d ➜ /workspaces/python-data-transformation-project (main) $ ls -lh tuition.gif
+-rw-rw-rw- 1 codespace codespace 1.5M Oct 30 21:44 tuition.gif
 ```
 
 ## Note
