@@ -71,7 +71,7 @@ grep -P '(?!AY )2014\/15,.*"' tuition.csv | sort | cut -f 4 -d "," | paste -d ',
 # data
 for i in {14..23}
 do
-    data=$(grep -P "(?!AY )20${i}\/$(( i + 1 )),.*\"" tuition.csv | sort | cut -f 5- -d "," |tr -d '$",'| paste -d ',' -s)
+    data=$(grep -P "20${i}\/$(( i + 1 )),.*\"" tuition.csv | sort | grep -oP '".*"'  |tr -d '$",'| paste -d ',' -s)
     echo "20${i},$data"
 done
 ```
@@ -107,10 +107,12 @@ import pandas
 import sys
 
 df = pandas.read_csv(sys.stdin)
-bcr.bar_chart_race(df = df, title='test', filename='tuition.mp4')
+# Need to make date an index so it turns into a label
+df = df.set_index('date')
+bcr.bar_chart_race(df = df, title='test', filename='tuition.gif')
 ```
 
-The file `tuition.mp4` will be created in the current directory.
+The file `tuition.gif` will be created in the current directory.
 
 ```console
 $ ./transform.sh | python make_chart.py 
@@ -135,8 +137,9 @@ chart creation  within the same script using Pandas.  At a high level, you will 
   1. Create the race chart and output to mp4 video file
   1. Make sure you study all the bar_chart_myrace customization options so your chart has proper labels, etc.  
 
-Here’s a pandas cheat sheet to help you: https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf.  My solution involves 
-creating a new dataframe by systemically extracting various columns and rows from the original dataframe, using 
+Here’s a pandas cheat sheet to help you: https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf.  While
+there may be more simple solution to this problem, it's good practice to  
+create a new dataframe by systemically extracting various columns and rows from the original dataframe, using 
 techniques such as unique, subset rows, subset columns, and creating dataframe.
 
 # Project (Idea 1)
@@ -147,8 +150,8 @@ with the chart output going to the directory ${HOME}/public_html/
 
 If you don’t have any datasets in mind, one interesting dataset is the vancouver crime data, which you can 
 download it from https://geodash.vpd.ca/opendata/#.  A relatively simple project would be to create a race chart 
-of all crimes for each vancouver neighborhood between 2003 to present (on a yearly basis).  Another popular website 
-with lots of datasets is https://www.kaggle.com/ 
+of all crimes for each vancouver neighborhood between 2003 to present (on a yearly basis).  Other popular websites 
+with lots of datasets are https://www.kaggle.com/ and https://huggingface.co 
 
 # Proejct (Idea 2)
 
