@@ -132,7 +132,7 @@ chart creation  within the same script using Pandas.  At a high level, you will 
   1. Ingest tuition CSV file into a dataframe
   1. Using various dataframe and python functions such as column and row slices, query selection, etc.
      To create a dataframe with the shape that fits the race chart module
-  1. Create the race chart and output to chart.html file inside your public_html directory
+  1. Create the race chart and output to mp4 video file
   1. Make sure you study all the bar_chart_myrace customization options so your chart has proper labels, etc.  
 
 Here’s a pandas cheat sheet to help you: https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf.  My solution involves 
