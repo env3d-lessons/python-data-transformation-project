@@ -58,7 +58,7 @@ you will see that it expects our data in the following format:
 ![race chart expected format](https://raw.githubusercontent.com/dexplo/bar_chart_race/gh-pages/images/wide_data.png)
 
 So we need to transform our tuition data into this format, with the first row listing the institution names and 
-the first column being a date.  The following script can perform such a transformation (assuming we rename the 
+the first column being a date.  The following python script can perform such a transformation (assuming we rename the 
 data file to tuition.csv):
 
 ```bash
@@ -66,10 +66,10 @@ data file to tuition.csv):
 
 # header
 echo -n "date,"
-grep -P '(?!AY )2014\/15,.*"' tuition.csv | sort | cut -f 4 -d "," | paste -d ',' -s
+grep -P '(?!AY )2016\/17,.*"' tuition.csv | sort | cut -f 4 -d "," | paste -d ',' -s
 
 # data
-for i in {14..23}
+for i in {16..25}
 do
     data=$(grep -P "20${i}\/$(( i + 1 )),.*\"" tuition.csv | sort | grep -oP '".*"'  |tr -d '$",'| paste -d ',' -s)
     echo "20${i},$data"
@@ -100,8 +100,6 @@ called `make_chart.py` that can make it happen (based on the bar-chart-race quic
 https://github.com/dexplo/bar_chart_race#quickstart):
 
 ```python
-#!/usr/bin/env python
-
 import bar_chart_race as bcr
 import pandas
 import sys
